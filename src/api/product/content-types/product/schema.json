@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "detail": {
+      "type": "text"
+    },
+    "sizeLabel": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "pictures": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "inversedBy": "products"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "sklenice",
+        "misky",
+        "greens"
+      ]
+    },
+    "sizes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::size.size",
+      "inversedBy": "products"
+    }
+  }
+}

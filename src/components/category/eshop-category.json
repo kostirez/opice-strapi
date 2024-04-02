@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_category_eshop_categories",
+  "info": {
+    "displayName": "eshop_category"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

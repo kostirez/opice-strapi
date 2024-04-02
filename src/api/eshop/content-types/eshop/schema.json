@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "eshops",
+  "info": {
+    "singularName": "eshop",
+    "pluralName": "eshops",
+    "displayName": "eshop"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "categories": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.eshop-category"
+    }
+  }
+}

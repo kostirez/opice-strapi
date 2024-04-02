@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "restaurant_offers",
+  "info": {
+    "singularName": "restaurant-offer",
+    "pluralName": "restaurant-offers",
+    "displayName": "restaurant_offer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "offers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.restaurants"
+    }
+  }
+}

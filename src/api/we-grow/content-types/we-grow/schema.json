@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "we_grows",
+  "info": {
+    "singularName": "we-grow",
+    "pluralName": "we-grows",
+    "displayName": "we_grow"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "greens": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.eshop-category"
+    }
+  }
+}

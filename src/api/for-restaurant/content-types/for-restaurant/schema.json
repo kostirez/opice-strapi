@@ -1,0 +1,57 @@
+{
+  "kind": "singleType",
+  "collectionName": "for_restaurants",
+  "info": {
+    "singularName": "for-restaurant",
+    "pluralName": "for-restaurants",
+    "displayName": "for_restaurant"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "head_2": {
+      "type": "string"
+    },
+    "descriptio_2": {
+      "type": "text"
+    },
+    "main_img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "meals": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "how_it_works": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

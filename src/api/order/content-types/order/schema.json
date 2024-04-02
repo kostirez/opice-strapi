@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "order"
+    "displayName": "order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -16,6 +17,15 @@
     },
     "invoice_id": {
       "type": "biginteger"
+    },
+    "transport": {
+      "type": "json"
+    },
+    "payment": {
+      "type": "json"
+    },
+    "products": {
+      "type": "json"
     }
   }
 }

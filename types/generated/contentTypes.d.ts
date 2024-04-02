@@ -362,36 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiOrderOrder extends Schema.CollectionType {
-  collectionName: 'orders';
-  info: {
-    singularName: 'order';
-    pluralName: 'orders';
-    displayName: 'order';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    invoice_id: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::order.order',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -818,6 +788,302 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiColorColor extends Schema.CollectionType {
+  collectionName: 'colors';
+  info: {
+    singularName: 'color';
+    pluralName: 'colors';
+    displayName: 'color';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    code: Attribute.String;
+    products: Attribute.Relation<
+      'api::color.color',
+      'manyToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEshopEshop extends Schema.SingleType {
+  collectionName: 'eshops';
+  info: {
+    singularName: 'eshop';
+    pluralName: 'eshops';
+    displayName: 'eshop';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categories: Attribute.Component<'category.eshop-category', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::eshop.eshop',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::eshop.eshop',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiForRestaurantForRestaurant extends Schema.SingleType {
+  collectionName: 'for_restaurants';
+  info: {
+    singularName: 'for-restaurant';
+    pluralName: 'for-restaurants';
+    displayName: 'for_restaurant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    head: Attribute.String;
+    description: Attribute.Text;
+    head_2: Attribute.String;
+    descriptio_2: Attribute.Text;
+    main_img: Attribute.Media;
+    meals: Attribute.Media;
+    how_it_works: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::for-restaurant.for-restaurant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::for-restaurant.for-restaurant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomeHome extends Schema.SingleType {
+  collectionName: 'homes';
+  info: {
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'home';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    main_pic: Attribute.Media;
+    microgreens_use: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    singularName: 'order';
+    pluralName: 'orders';
+    displayName: 'order';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    invoice_id: Attribute.BigInteger;
+    transport: Attribute.JSON;
+    payment: Attribute.JSON;
+    products: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    detail: Attribute.Text;
+    sizeLabel: Attribute.String;
+    price: Attribute.Decimal;
+    pictures: Attribute.Media;
+    colors: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::color.color'
+    >;
+    category: Attribute.Enumeration<['sklenice', 'misky', 'greens']>;
+    sizes: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::size.size'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRestaurantOfferRestaurantOffer extends Schema.SingleType {
+  collectionName: 'restaurant_offers';
+  info: {
+    singularName: 'restaurant-offer';
+    pluralName: 'restaurant-offers';
+    displayName: 'restaurant_offer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    offers: Attribute.Component<'category.restaurants', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::restaurant-offer.restaurant-offer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::restaurant-offer.restaurant-offer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSizeSize extends Schema.CollectionType {
+  collectionName: 'sizes';
+  info: {
+    singularName: 'size';
+    pluralName: 'sizes';
+    displayName: 'size';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    icon: Attribute.Media;
+    products: Attribute.Relation<
+      'api::size.size',
+      'manyToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWeGrowWeGrow extends Schema.SingleType {
+  collectionName: 'we_grows';
+  info: {
+    singularName: 'we-grow';
+    pluralName: 'we-grows';
+    displayName: 'we_grow';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    greens: Attribute.Component<'category.eshop-category', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::we-grow.we-grow',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::we-grow.we-grow',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -828,7 +1094,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::order.order': ApiOrderOrder;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -837,6 +1102,15 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::color.color': ApiColorColor;
+      'api::eshop.eshop': ApiEshopEshop;
+      'api::for-restaurant.for-restaurant': ApiForRestaurantForRestaurant;
+      'api::home.home': ApiHomeHome;
+      'api::order.order': ApiOrderOrder;
+      'api::product.product': ApiProductProduct;
+      'api::restaurant-offer.restaurant-offer': ApiRestaurantOfferRestaurantOffer;
+      'api::size.size': ApiSizeSize;
+      'api::we-grow.we-grow': ApiWeGrowWeGrow;
     }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_category_restaurants",
+  "info": {
+    "displayName": "restaurants"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
