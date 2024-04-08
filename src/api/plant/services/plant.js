@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * we-grow service
+ * plant service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::we-grow.we-grow');
+module.exports = createCoreService('api::plant.plant');

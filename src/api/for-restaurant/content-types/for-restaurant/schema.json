@@ -4,7 +4,8 @@
   "info": {
     "singularName": "for-restaurant",
     "pluralName": "for-restaurants",
-    "displayName": "for_restaurant"
+    "displayName": "for_restaurant",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,44 +15,47 @@
     "head": {
       "type": "string"
     },
-    "description": {
+    "text": {
       "type": "text"
     },
     "head_2": {
       "type": "string"
     },
-    "descriptio_2": {
+    "text_2": {
       "type": "text"
     },
     "main_img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "meals": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "how_it_works": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

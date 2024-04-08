@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "eshops",
+  "collectionName": "plants",
   "info": {
-    "singularName": "eshop",
-    "pluralName": "eshops",
-    "displayName": "eshop",
+    "singularName": "plant",
+    "pluralName": "plants",
+    "displayName": "plant",
     "description": ""
   },
   "options": {
@@ -15,10 +15,7 @@
     "items": {
       "type": "component",
       "repeatable": true,
-      "component": "category.eshop-category"
-    },
-    "head": {
-      "type": "string"
+      "component": "category.pic-item"
     }
   }
 }

@@ -1,14 +1,15 @@
 {
   "collectionName": "components_category_restaurants",
   "info": {
-    "displayName": "restaurants"
+    "displayName": "TextItem",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "head": {
       "type": "string"
     },
-    "description": {
+    "text": {
       "type": "text"
     }
   }

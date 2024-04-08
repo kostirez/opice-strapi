@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_category_addresses",
+  "info": {
+    "displayName": "address",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postCode": {
+      "type": "integer"
+    }
+  }
+}

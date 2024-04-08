@@ -830,15 +830,16 @@ export interface ApiEshopEshop extends Schema.SingleType {
     singularName: 'eshop';
     pluralName: 'eshops';
     displayName: 'eshop';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    categories: Attribute.Component<'category.eshop-category', true>;
+    items: Attribute.Component<'category.eshop-category', true>;
+    head: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::eshop.eshop',
       'oneToOne',
@@ -860,15 +861,16 @@ export interface ApiForRestaurantForRestaurant extends Schema.SingleType {
     singularName: 'for-restaurant';
     pluralName: 'for-restaurants';
     displayName: 'for_restaurant';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     head: Attribute.String;
-    description: Attribute.Text;
+    text: Attribute.Text;
     head_2: Attribute.String;
-    descriptio_2: Attribute.Text;
+    text_2: Attribute.Text;
     main_img: Attribute.Media;
     meals: Attribute.Media;
     how_it_works: Attribute.Media;
@@ -902,8 +904,8 @@ export interface ApiHomeHome extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
+    head: Attribute.String;
+    text: Attribute.Text;
     main_pic: Attribute.Media;
     microgreens_use: Attribute.Media;
     createdAt: Attribute.DateTime;
@@ -911,6 +913,39 @@ export interface ApiHomeHome extends Schema.SingleType {
     createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMessageMessage extends Schema.CollectionType {
+  collectionName: 'messages';
+  info: {
+    singularName: 'message';
+    pluralName: 'messages';
+    displayName: 'message';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    text: Attribute.Text;
+    mail: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::message.message',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -927,11 +962,14 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    name: Attribute.String;
     invoice_id: Attribute.BigInteger;
-    transport: Attribute.JSON;
-    payment: Attribute.JSON;
-    products: Attribute.JSON;
+    products: Attribute.Component<'category.product-summary', true>;
+    transportCode: Attribute.String;
+    paymentCode: Attribute.String;
+    address: Attribute.Component<'category.address'>;
+    person: Attribute.Component<'category.person'>;
+    gdpr: Attribute.Boolean;
+    obchodniPodminky: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -942,6 +980,36 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPlantPlant extends Schema.SingleType {
+  collectionName: 'plants';
+  info: {
+    singularName: 'plant';
+    pluralName: 'plants';
+    displayName: 'plant';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    items: Attribute.Component<'category.pic-item', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::plant.plant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::plant.plant',
       'oneToOne',
       'admin::user'
     > &
@@ -1002,6 +1070,7 @@ export interface ApiRestaurantOfferRestaurantOffer extends Schema.SingleType {
     singularName: 'restaurant-offer';
     pluralName: 'restaurant-offers';
     displayName: 'restaurant_offer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1054,36 +1123,6 @@ export interface ApiSizeSize extends Schema.CollectionType {
   };
 }
 
-export interface ApiWeGrowWeGrow extends Schema.SingleType {
-  collectionName: 'we_grows';
-  info: {
-    singularName: 'we-grow';
-    pluralName: 'we-grows';
-    displayName: 'we_grow';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    greens: Attribute.Component<'category.eshop-category', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::we-grow.we-grow',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::we-grow.we-grow',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1106,11 +1145,12 @@ declare module '@strapi/types' {
       'api::eshop.eshop': ApiEshopEshop;
       'api::for-restaurant.for-restaurant': ApiForRestaurantForRestaurant;
       'api::home.home': ApiHomeHome;
+      'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;
+      'api::plant.plant': ApiPlantPlant;
       'api::product.product': ApiProductProduct;
       'api::restaurant-offer.restaurant-offer': ApiRestaurantOfferRestaurantOffer;
       'api::size.size': ApiSizeSize;
-      'api::we-grow.we-grow': ApiWeGrowWeGrow;
     }
   }
 }

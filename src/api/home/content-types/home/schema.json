@@ -12,31 +12,33 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "head": {
       "type": "string"
     },
-    "description": {
+    "text": {
       "type": "text"
     },
     "main_pic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "microgreens_use": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
   }
 }

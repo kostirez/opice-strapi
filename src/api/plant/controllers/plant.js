@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * we-grow controller
+ * plant controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::we-grow.we-grow');
+module.exports = createCoreController('api::plant.plant');

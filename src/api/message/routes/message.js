@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * we-grow router
+ * message router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::we-grow.we-grow');
+module.exports = createCoreRouter('api::message.message');
