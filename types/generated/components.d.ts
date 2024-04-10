@@ -38,6 +38,21 @@ export interface CategoryMenuItem extends Schema.Component {
   };
 }
 
+export interface CategoryPayment extends Schema.Component {
+  collectionName: 'components_category_payments';
+  info: {
+    displayName: 'PaymentTransport';
+    description: '';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+    code: Attribute.String;
+    price: Attribute.Decimal;
+    icon: Attribute.Media;
+  };
+}
+
 export interface CategoryPerson extends Schema.Component {
   collectionName: 'components_category_people';
   info: {
@@ -88,16 +103,29 @@ export interface CategoryRestaurants extends Schema.Component {
   };
 }
 
+export interface CategoryTransport extends Schema.Component {
+  collectionName: 'components_category_transports';
+  info: {
+    displayName: 'Transport';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'category.address': CategoryAddress;
       'category.eshop-category': CategoryEshopCategory;
       'category.menu-item': CategoryMenuItem;
+      'category.payment': CategoryPayment;
       'category.person': CategoryPerson;
       'category.pic-item': CategoryPicItem;
       'category.product-summary': CategoryProductSummary;
       'category.restaurants': CategoryRestaurants;
+      'category.transport': CategoryTransport;
     }
   }
 }

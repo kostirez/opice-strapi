@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "pay_transports",
+  "info": {
+    "singularName": "pay-transport",
+    "pluralName": "pay-transports",
+    "displayName": "pay_transport",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transportMethods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.payment"
+    },
+    "paymentMethods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.payment"
+    }
+  }
+}

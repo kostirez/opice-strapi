@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_category_payments",
+  "info": {
+    "displayName": "PaymentTransport",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "code": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

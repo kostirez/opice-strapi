@@ -970,6 +970,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     person: Attribute.Component<'category.person'>;
     gdpr: Attribute.Boolean;
     obchodniPodminky: Attribute.Boolean;
+    transportPlace: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -980,6 +981,38 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPayTransportPayTransport extends Schema.SingleType {
+  collectionName: 'pay_transports';
+  info: {
+    singularName: 'pay-transport';
+    pluralName: 'pay-transports';
+    displayName: 'pay_transport';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    transportMethods: Attribute.Component<'category.payment', true>;
+    paymentMethods: Attribute.Component<'category.payment', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::pay-transport.pay-transport',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::pay-transport.pay-transport',
       'oneToOne',
       'admin::user'
     > &
@@ -1147,6 +1180,7 @@ declare module '@strapi/types' {
       'api::home.home': ApiHomeHome;
       'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;
+      'api::pay-transport.pay-transport': ApiPayTransportPayTransport;
       'api::plant.plant': ApiPlantPlant;
       'api::product.product': ApiProductProduct;
       'api::restaurant-offer.restaurant-offer': ApiRestaurantOfferRestaurantOffer;

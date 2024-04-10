@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_category_transports",
+  "info": {
+    "displayName": "Transport"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}
