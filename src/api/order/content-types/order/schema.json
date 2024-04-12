@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "invoice_id": {
-      "type": "biginteger"
-    },
     "products": {
       "type": "component",
       "repeatable": true,
@@ -44,6 +41,9 @@
     },
     "transportPlace": {
       "type": "json"
+    },
+    "totalPrice": {
+      "type": "integer"
     }
   }
 }

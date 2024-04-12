@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "invoice"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "baseNum": {
+      "type": "biginteger"
+    }
+  }
+}

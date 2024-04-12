@@ -917,6 +917,36 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiInvoiceInvoice extends Schema.SingleType {
+  collectionName: 'invoices';
+  info: {
+    singularName: 'invoice';
+    pluralName: 'invoices';
+    displayName: 'invoice';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    baseNum: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::invoice.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::invoice.invoice',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMessageMessage extends Schema.CollectionType {
   collectionName: 'messages';
   info: {
@@ -962,7 +992,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    invoice_id: Attribute.BigInteger;
     products: Attribute.Component<'category.product-summary', true>;
     transportCode: Attribute.String;
     paymentCode: Attribute.String;
@@ -971,6 +1000,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     gdpr: Attribute.Boolean;
     obchodniPodminky: Attribute.Boolean;
     transportPlace: Attribute.JSON;
+    totalPrice: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1178,6 +1208,7 @@ declare module '@strapi/types' {
       'api::eshop.eshop': ApiEshopEshop;
       'api::for-restaurant.for-restaurant': ApiForRestaurantForRestaurant;
       'api::home.home': ApiHomeHome;
+      'api::invoice.invoice': ApiInvoiceInvoice;
       'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;
       'api::pay-transport.pay-transport': ApiPayTransportPayTransport;
