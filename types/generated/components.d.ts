@@ -13,6 +13,20 @@ export interface CategoryAddress extends Schema.Component {
   };
 }
 
+export interface CategoryEmailTemplate extends Schema.Component {
+  collectionName: 'components_category_email_templates';
+  info: {
+    displayName: 'emailTemplate';
+    description: '';
+  };
+  attributes: {
+    from: Attribute.String;
+    html: Attribute.Text;
+    subject: Attribute.String;
+    code: Attribute.String;
+  };
+}
+
 export interface CategoryEshopCategory extends Schema.Component {
   collectionName: 'components_category_eshop_categories';
   info: {
@@ -118,6 +132,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'category.address': CategoryAddress;
+      'category.email-template': CategoryEmailTemplate;
       'category.eshop-category': CategoryEshopCategory;
       'category.menu-item': CategoryMenuItem;
       'category.payment': CategoryPayment;

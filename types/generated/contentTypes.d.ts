@@ -879,12 +879,13 @@ export interface ApiEmailEmail extends Schema.SingleType {
     singularName: 'email';
     pluralName: 'emails';
     displayName: 'email';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    from: Attribute.String;
+    templates: Attribute.Component<'category.email-template', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

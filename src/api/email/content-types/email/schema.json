@@ -4,15 +4,18 @@
   "info": {
     "singularName": "email",
     "pluralName": "emails",
-    "displayName": "email"
+    "displayName": "email",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "from": {
-      "type": "string"
+    "templates": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.email-template"
     }
   }
 }
