@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "instructions",
+  "info": {
+    "singularName": "instruction",
+    "pluralName": "instructions",
+    "displayName": "instruction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "head_2": {
+      "type": "string"
+    },
+    "text_2": {
+      "type": "text"
+    },
+    "steps_sklenice": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.restaurants"
+    },
+    "steps_sitka": {
+      "type": "component",
+      "repeatable": true,
+      "component": "category.restaurants"
+    },
+    "headSklenice": {
+      "type": "string"
+    },
+    "headMisky": {
+      "type": "string"
+    }
+  }
+}

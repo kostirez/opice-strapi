@@ -18,9 +18,6 @@
     "description": {
       "type": "text"
     },
-    "detail": {
-      "type": "text"
-    },
     "sizeLabel": {
       "type": "string"
     },
@@ -57,6 +54,12 @@
       "relation": "manyToMany",
       "target": "api::size.size",
       "inversedBy": "products"
+    },
+    "details": {
+      "displayName": "ProductDetail",
+      "type": "component",
+      "repeatable": true,
+      "component": "category.product-detail"
     }
   }
 }

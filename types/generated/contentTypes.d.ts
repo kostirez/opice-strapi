@@ -997,6 +997,44 @@ export interface ApiHomeHome extends Schema.SingleType {
   };
 }
 
+export interface ApiInstructionInstruction extends Schema.SingleType {
+  collectionName: 'instructions';
+  info: {
+    singularName: 'instruction';
+    pluralName: 'instructions';
+    displayName: 'instruction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+    head_2: Attribute.String;
+    text_2: Attribute.Text;
+    steps_sklenice: Attribute.Component<'category.restaurants', true>;
+    steps_sitka: Attribute.Component<'category.restaurants', true>;
+    headSklenice: Attribute.String;
+    headMisky: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::instruction.instruction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::instruction.instruction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInvoiceInvoice extends Schema.SingleType {
   collectionName: 'invoices';
   info: {
@@ -1174,7 +1212,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    detail: Attribute.Text;
     sizeLabel: Attribute.String;
     price: Attribute.Decimal;
     pictures: Attribute.Media;
@@ -1189,6 +1226,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToMany',
       'api::size.size'
     >;
+    details: Attribute.Component<'category.product-detail', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1290,6 +1328,7 @@ declare module '@strapi/types' {
       'api::eshop.eshop': ApiEshopEshop;
       'api::for-restaurant.for-restaurant': ApiForRestaurantForRestaurant;
       'api::home.home': ApiHomeHome;
+      'api::instruction.instruction': ApiInstructionInstruction;
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;

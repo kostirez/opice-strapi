@@ -91,6 +91,19 @@ export interface CategoryPicItem extends Schema.Component {
   };
 }
 
+export interface CategoryProductDetail extends Schema.Component {
+  collectionName: 'components_category_product_details';
+  info: {
+    displayName: 'ProductDetail';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    pics: Attribute.Media;
+    text: Attribute.RichText;
+  };
+}
+
 export interface CategoryProductSummary extends Schema.Component {
   collectionName: 'components_category_product_summaries';
   info: {
@@ -138,6 +151,7 @@ declare module '@strapi/types' {
       'category.payment': CategoryPayment;
       'category.person': CategoryPerson;
       'category.pic-item': CategoryPicItem;
+      'category.product-detail': CategoryProductDetail;
       'category.product-summary': CategoryProductSummary;
       'category.restaurants': CategoryRestaurants;
       'category.transport': CategoryTransport;
