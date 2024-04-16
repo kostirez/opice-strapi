@@ -18,5 +18,12 @@ module.exports = createCoreService('api::email.email', ({ strapi }) => ({
       html: html,
     });
 
+    await strapi.plugins['email'].services.email.send({
+      to: 'obchod@zrzavaopice.cz',
+      from: template.from,
+      subject: template.subject,
+      html: html,
+    });
+
   },
 }));
