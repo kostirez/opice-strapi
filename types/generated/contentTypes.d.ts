@@ -1119,6 +1119,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     obchodniPodminky: Attribute.Boolean;
     transportPlace: Attribute.JSON;
     totalPrice: Attribute.Integer;
+    note: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

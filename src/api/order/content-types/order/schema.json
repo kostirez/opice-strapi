@@ -44,6 +44,9 @@
     },
     "totalPrice": {
       "type": "integer"
+    },
+    "note": {
+      "type": "text"
     }
   }
 }
