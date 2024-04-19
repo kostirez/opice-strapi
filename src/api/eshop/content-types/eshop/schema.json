@@ -19,6 +19,9 @@
     },
     "head": {
       "type": "string"
+    },
+    "promotion": {
+      "type": "richtext"
     }
   }
 }

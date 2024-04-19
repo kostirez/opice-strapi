@@ -918,6 +918,7 @@ export interface ApiEshopEshop extends Schema.SingleType {
   attributes: {
     items: Attribute.Component<'category.eshop-category', true>;
     head: Attribute.String;
+    promotion: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
