@@ -9,7 +9,7 @@ const { createCoreService } = require('@strapi/strapi').factories;
 module.exports = createCoreService('api::order.order', ({ strapi }) => ({
   async create(ctx) {
     const { body } = ctx.request;
-    const totalPrice = await calculatePrice(body.data.products, body.data.paymentCode, body.data.transportCode);
+    const totalPrice = await calculatePrice(body.data);
     const newOrder = await strapi.entityService.create('api::order.order', {
       data: {
         ...body.data,
@@ -29,12 +29,22 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
   },
 }));
 
-const calculatePrice = async (products, payMethod, transMethod) => {
-  const {transportMethods, paymentMethods} = await strapi.entityService.findOne('api::pay-transport.pay-transport', 1,{ populate: ['transportMethods', 'paymentMethods'] });
-  const sumProducts = products.reduce((sum, current) => sum + current.priceForOne * current.count, 0);
-  const transportSum = transportMethods.find(t => t.code == transMethod).price;
-  const paymentSum = paymentMethods.find(p => p.code == payMethod).price;
-  return sumProducts + paymentSum + transportSum;
+const calculatePrice = async (data) => {
+  // products price
+  const ProductsSum = data.products.reduce((sum, current) => sum + current.priceForOne * current.count, 0);
+
+  // get transport and payment method
+  const {transportMethods, paymentMethods} = await strapi.entityService
+    .findOne('api::pay-transport.pay-transport', 1,{ populate: ['transportMethods', 'paymentMethods'] });
+  const transportMethod = transportMethods.find(t => t.code == data.transportCode);
+  const paymentMethod = paymentMethods.find(p => p.code == data.paymentCode);
+
+  // calculate price
+  const transportSum = ProductsSum < transportMethod.freeFrom ? transportMethod.price : 0;
+  const paymentSum = ProductsSum < paymentMethod.freeFrom ? paymentMethod.price : 0;
+
+  //return sum of all
+  return ProductsSum + paymentSum + transportSum;
 }
 
 const getInvoiceBase = async () => {
