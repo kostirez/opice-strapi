@@ -64,6 +64,7 @@ export interface CategoryPayment extends Schema.Component {
     code: Attribute.String;
     price: Attribute.Decimal;
     icon: Attribute.Media;
+    freeFrom: Attribute.Integer;
   };
 }
 
