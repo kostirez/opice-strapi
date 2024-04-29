@@ -142,6 +142,18 @@ export interface CategoryTransport extends Schema.Component {
   };
 }
 
+export interface CategoryZboziOption extends Schema.Component {
+  collectionName: 'components_category_zbozi_options';
+  info: {
+    displayName: 'zboziOption';
+  };
+  attributes: {
+    head: Attribute.String;
+    pic: Attribute.Media;
+    code: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -156,6 +168,7 @@ declare module '@strapi/types' {
       'category.product-summary': CategoryProductSummary;
       'category.restaurants': CategoryRestaurants;
       'category.transport': CategoryTransport;
+      'category.zbozi-option': CategoryZboziOption;
     }
   }
 }

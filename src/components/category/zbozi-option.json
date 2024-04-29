@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_category_zbozi_options",
+  "info": {
+    "displayName": "zboziOption"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "pic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "code": {
+      "type": "string"
+    }
+  }
+}

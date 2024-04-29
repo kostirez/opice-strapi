@@ -1229,6 +1229,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::size.size'
     >;
     details: Attribute.Component<'category.product-detail', true>;
+    zboziOptions: Attribute.Component<'category.zbozi-option', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
