@@ -4,7 +4,8 @@
   "info": {
     "singularName": "invoice",
     "pluralName": "invoices",
-    "displayName": "invoice"
+    "displayName": "invoice",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,12 @@
   "attributes": {
     "baseNum": {
       "type": "biginteger"
+    },
+    "account": {
+      "type": "biginteger"
+    },
+    "bankNum": {
+      "type": "integer"
     }
   }
 }

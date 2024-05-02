@@ -17,7 +17,9 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
       },
     });
 
-    const invoiceNum = await getInvoiceBase() + newOrder.id;
+    const {baseNum, account, bankNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
+
+    const invoiceNum = baseNum + newOrder.id;
 
     return {
       id: newOrder.id,
@@ -25,6 +27,8 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
       paymentCode: newOrder.paymentCode,
       totalPrice: totalPrice,
       invoiceId: invoiceNum,
+      account: account,
+      bankNum: bankNum,
     };
   },
 }));
@@ -45,9 +49,4 @@ const calculatePrice = async (data) => {
 
   //return sum of all
   return ProductsSum + paymentSum + transportSum;
-}
-
-const getInvoiceBase = async () => {
-  const {baseNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
-  return baseNum;
 }

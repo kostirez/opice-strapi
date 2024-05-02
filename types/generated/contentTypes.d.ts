@@ -1042,12 +1042,15 @@ export interface ApiInvoiceInvoice extends Schema.SingleType {
     singularName: 'invoice';
     pluralName: 'invoices';
     displayName: 'invoice';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     baseNum: Attribute.BigInteger;
+    account: Attribute.BigInteger;
+    bankNum: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
