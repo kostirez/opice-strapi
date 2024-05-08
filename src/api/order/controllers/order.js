@@ -3,7 +3,9 @@
 /**
  * order controller
  */
-
+const fs = require('fs');
+const {generateQrCode} = require("../../../helpers/grcode");
+const {getVS} = require("../../../helpers/invoiceId");
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::order.order', ({ strapi }) => ({
@@ -12,9 +14,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
 
     const order = await strapi.entityService.findOne('api::order.order', newOrder.id, {populate: 'person'});
 
-    const {baseNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
-
-    const invoiceId = baseNum + newOrder.id;
+    const invoiceId = getVS(newOrder.id);
 
     await strapi.service('api::email.email').send({
       to: order.person.email,
@@ -33,7 +33,22 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
       `
     });
 
+    let attachment = undefined;
+    if (newOrder.paymentCode==='PRE') {
+      const QrCodePath = await generateQrCode(order);
+      try {
+        if (fs.existsSync(QrCodePath)) {
+          attachment = fs.readFileSync(QrCodePath);
+          ctx.attachment(QrCodePath);
+        } else {
+          ctx.throw(400, "Requested file not found on server");
+        }
+      } catch(error) {
+        ctx.throw(500, error);
+      }
+    }
+
     const sanitizedOrder = await this.sanitizeOutput(newOrder, ctx);
-    ctx.body = sanitizedOrder;
+    ctx.body = {orderResponse: sanitizedOrder, image: attachment ? attachment.toString('base64') : undefined};
   },
 }));
