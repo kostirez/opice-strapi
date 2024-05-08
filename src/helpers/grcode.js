@@ -1,22 +1,44 @@
-const fs = require("fs");
-const got = require("got");
-const { pipeline } = require('stream')
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
+async function downloadAndSaveFile(url, filePath) {
+  try {
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'stream'
+    });
+
+    const writer = fs.createWriteStream(filePath);
+    response.data.pipe(writer);
+
+    return new Promise((resolve, reject) => {
+      writer.on('finish', () => resolve(filePath));
+      writer.on('error', reject);
+    });
+  } catch (error) {
+    throw new Error(`Error downloading file: ${error.message}`);
+  }
+}
+
+async function savePngFileFromUrl(url, saveDirectory, vs) {
+  try {
+    if (!fs.existsSync(saveDirectory)) {
+      fs.mkdirSync(saveDirectory, { recursive: true });
+    }
+
+    const fileName = path.basename(`${vs}.png`);
+    const filePath = path.join(saveDirectory, fileName);
+
+    await downloadAndSaveFile(url, filePath);
+
+    return filePath;
+  } catch (error) {
+    throw new Error(`Error saving PNG file from URL: ${error.message}`);
+  }
+}
 
 module.exports = {
-  async generateQrCode(amount, vs, message) {
-    const api = 'https://api.paylibo.com/paylibo/generator/czech/image';
-    const url = `${api}?accountNumber=2602805796&bankCode=2010&amount=${amount}&currency=CZK&vs=${vs}&message=${message}`;
-    const filePath = `./.tmp/qrpayment/${vs}.png`;
-    const readStream = got.stream(url);
-    pipeline(readStream, fs.createWriteStream(filePath), (err) => {
-      if (err) {
-        console.log(err);
-        return '';
-      } else {
-        console.log("Write complete");
-        return filePath;
-      }
-    });
-  }
+  savePngFileFromUrl
 }

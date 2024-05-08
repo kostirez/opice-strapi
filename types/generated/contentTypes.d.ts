@@ -1124,6 +1124,7 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     transportPlace: Attribute.JSON;
     totalPrice: Attribute.Integer;
     note: Attribute.Text;
+    invoice: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1134,6 +1135,43 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOwnerOwner extends Schema.SingleType {
+  collectionName: 'owners';
+  info: {
+    singularName: 'owner';
+    pluralName: 'owners';
+    displayName: 'owner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    address: Attribute.String;
+    zip: Attribute.String;
+    city: Attribute.String;
+    country: Attribute.String;
+    ico: Attribute.BigInteger;
+    businessName: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::owner.owner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::owner.owner',
       'oneToOne',
       'admin::user'
     > &
@@ -1338,6 +1376,7 @@ declare module '@strapi/types' {
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;
+      'api::owner.owner': ApiOwnerOwner;
       'api::pay-transport.pay-transport': ApiPayTransportPayTransport;
       'api::plant.plant': ApiPlantPlant;
       'api::product.product': ApiProductProduct;
