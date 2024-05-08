@@ -1,44 +1,23 @@
-const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
 
-async function downloadAndSaveFile(url, filePath) {
+const { getVS } = require("./invoiceId");
+const { savePngFileFromUrl } = require("./fileGetter");
+
+const generateQrCode = async (order) => {
+  const invoice = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
+  const vs = await getVS(order.id);
+  const api = 'https://api.paylibo.com/paylibo/generator/czech/image';
+  const url = `${api}?accountNumber=${invoice.account}&bankCode=${invoice.bankNum}&amount=${order.totalPrice}&currency=CZK&vs=${vs}`;
+  const saveDirectory = '.tmp/qrPayment/';
+  let filePath ='';
   try {
-    const response = await axios({
-      url,
-      method: 'GET',
-      responseType: 'stream'
-    });
-
-    const writer = fs.createWriteStream(filePath);
-    response.data.pipe(writer);
-
-    return new Promise((resolve, reject) => {
-      writer.on('finish', () => resolve(filePath));
-      writer.on('error', reject);
-    });
+    filePath = await savePngFileFromUrl(url, saveDirectory, vs)
   } catch (error) {
-    throw new Error(`Error downloading file: ${error.message}`);
+    onsole.error('Error:', error.message)
   }
+  return filePath;
 }
 
-async function savePngFileFromUrl(url, saveDirectory, vs) {
-  try {
-    if (!fs.existsSync(saveDirectory)) {
-      fs.mkdirSync(saveDirectory, { recursive: true });
-    }
-
-    const fileName = path.basename(`${vs}.png`);
-    const filePath = path.join(saveDirectory, fileName);
-
-    await downloadAndSaveFile(url, filePath);
-
-    return filePath;
-  } catch (error) {
-    throw new Error(`Error saving PNG file from URL: ${error.message}`);
-  }
-}
 
 module.exports = {
-  savePngFileFromUrl
+  generateQrCode
 }

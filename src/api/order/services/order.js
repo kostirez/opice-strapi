@@ -5,6 +5,7 @@
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
+const { getVS } = require("../../../helpers/invoiceId");
 
 module.exports = createCoreService('api::order.order', ({ strapi }) => ({
   async create(ctx) {
@@ -17,9 +18,9 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
       },
     });
 
-    const {baseNum, account, bankNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
+    const {account, bankNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
 
-    const invoiceNum = baseNum + newOrder.id;
+    const invoiceNum = getVS(newOrder.id);
 
     return {
       id: newOrder.id,

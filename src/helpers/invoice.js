@@ -1,6 +1,6 @@
 const fs = require('fs');
 const PDFDocument = require("pdfkit");
-const { savePngFileFromUrl} = require("./grcode");
+const { generateQrCode} = require("./grcode");
 
 const createInvoice = async(order, path) => {
 
@@ -16,7 +16,7 @@ const createInvoice = async(order, path) => {
   doc.registerFont('regular', 'fonts/Podkova-Regular.ttf')
   doc.registerFont('bold', 'fonts/Podkova-Bold.ttf')
 
-  generateHeader(doc, invoice.baseNum + order.id);
+  generateHeader(doc, getVS(order.id));
   generatePersonalInfo(doc, order, owner);
   await generatePaymentDetail(doc, invoice, order, payMethod);
   await generateInvoiceTable(doc, order, payMethod, transMethod);
@@ -70,18 +70,8 @@ function generatePersonalInfo(doc, order, owner) {
 
 const generatePaymentDetail = async (doc, invoice, order, paymentMethod) => {
 
-  // const path = await generateQrCode(order.total, invoice.baseNum + order.id, '');
-  const vs = invoice.baseNum + order.id;
-  const api = 'https://api.paylibo.com/paylibo/generator/czech/image';
-  const url = `${api}?accountNumber=${invoice.account}&bankCode=${invoice.bankNum}&amount=${order.totalPrice}&currency=CZK&vs=${vs}`;
-  const saveDirectory = '.tmp/qrPayment/';
-  let filePath ='';
-  try {
-    filePath = await savePngFileFromUrl(url, saveDirectory, vs)
-  } catch (error) {
-    onsole.error('Error:', error.message)
-  }
-
+  const filePath = await generateQrCode(order);
+  const vs = getVS(order.id);
 
   let orderDate = new Date(order.createdAt)
   const createdAt = `${orderDate.getDate()}. ${orderDate.getMonth()}. ${orderDate.getFullYear()}`;
@@ -215,6 +205,7 @@ function formatCurrency(value) {
   return (value).toFixed(2) + ' Kč';
 }
 
+
 module.exports = {
-  createInvoice
+  createInvoice,
 };
