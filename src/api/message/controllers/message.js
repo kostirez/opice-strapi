@@ -16,27 +16,13 @@ module.exports = createCoreController('api::message.message', ({ strapi }) => ({
       },
     });
 
-    await strapi.service('api::email.email').send({
-      to: newMessage.mail,
-      templateCode: 'message',
-      html: `
-      <div>
-        <h2>Děkujeme za zaslaný dotaz přes naše webové stránky zrzavaopice.cz</h2>
-
-
-            <h3 style="margin-top: 5rem;">Zpráva:</h3>
-            <p>Jméno/firma: ${newMessage.name}</p>
-            <p>Dotaz: ${newMessage.text}</p>
-
-        <div style="margin-top: 5rem;">
-              <small >Email byl vygenerován automaticky.</small>
-              <h3 style="margin-top: 1rem;">zrzavaopice.cz</h3>
-              <h3>obchod@zrzavaopice.cz</h3>
-            </div>
-      </div>
-      `
-    });
-
+    await strapi.service('api::email.email').send(
+      [newMessage.mail, "obchod@zrzavaopice.cz"],
+      "message",
+      {
+        name: newMessage.name,
+        text: newMessage.text
+      },[]);
     const sanitizedReview = await this.sanitizeOutput(newMessage, ctx);
 
     ctx.body = sanitizedReview;

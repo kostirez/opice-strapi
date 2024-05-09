@@ -7,31 +7,16 @@ const fs = require('fs');
 const {generateQrCode} = require("../../../helpers/grcode");
 const {getVS} = require("../../../helpers/invoiceId");
 const { createCoreController } = require('@strapi/strapi').factories;
+const { getPublicDocument } = require("../../../helpers/fileGetter")
 
 module.exports = createCoreController('api::order.order', ({ strapi }) => ({
   async create(ctx) {
     const newOrder = await strapi.service('api::order.order').create(ctx);
+    const order = await strapi.entityService.findOne('api::order.order', newOrder.id, {populate: '*'});
+    const invoiceId = await getVS(newOrder.id);
 
-    const order = await strapi.entityService.findOne('api::order.order', newOrder.id, {populate: 'person'});
-
-    const invoiceId = getVS(newOrder.id);
-
-    await strapi.service('api::email.email').send({
-      to: order.person.email,
-      templateCode: 'order',
-      html: `
-      <div>
-        <h2>Potvrzujeme vaší objednávku číslo ${invoiceId}</h2>
-        <h4>Zboží teď připravujeme a brzy vás budeme informovat o odeslání.</h4>
-
-        <div style="margin-top: 5rem;">
-              <small >Email byl vygenerován automaticky.</small>
-              <h3 style="margin-top: 1rem;">zrzavaopice.cz</h3>
-              <h3>obchod@zrzavaopice.cz</h3>
-            </div>
-      </div>
-      `
-    });
+    const fileName = 'obchodni_podminky.pdf'
+    const obchodniPodminky = await getPublicDocument(fileName);
 
     let attachment = undefined;
     if (newOrder.paymentCode==='PRE') {
@@ -41,12 +26,48 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
           attachment = fs.readFileSync(QrCodePath);
           ctx.attachment(QrCodePath);
         } else {
-          ctx.throw(400, "Requested file not found on server");
+          console.error("QrCode - Requested file not found on server");
         }
       } catch(error) {
-        ctx.throw(500, error);
+        console.error("QrCode - error", error);
       }
     }
+
+    // send mail to customer
+    await strapi.service('api::email.email').send(
+      [order.person.email],
+      'order',
+      {
+        orderId: invoiceId,
+        products: order.products,
+      },
+      [
+        {
+          content: obchodniPodminky.toString('base64'),
+          filename: fileName,
+          type: 'application/pdf',
+          disposition: 'attachment'
+        },
+      ],
+    );
+
+    // send mail to me
+    await strapi.service('api::email.email').send(
+      ['obchod@zrzavaopice.cz'],
+      'order-detail',
+      {
+        orderId: invoiceId,
+        products: order.products,
+        personName: order.person.name,
+        personEmail: order.person.email,
+        personTel: order.person.tel,
+        personAddress: order.address.street + order.address.city,
+        transport: order.transportCode,
+        payment: order.paymentCode,
+      },
+      [],
+    );
+
 
     const sanitizedOrder = await this.sanitizeOutput(newOrder, ctx);
     ctx.body = {orderResponse: sanitizedOrder, image: attachment ? attachment.toString('base64') : undefined};
