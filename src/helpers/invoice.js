@@ -71,7 +71,7 @@ function generatePersonalInfo(doc, order, owner) {
 const generatePaymentDetail = async (doc, invoice, order, paymentMethod) => {
 
   const filePath = await generateQrCode(order);
-  const vs = getVS(order.id);
+  const vs = await getVS(order.id);
 
   let orderDate = new Date(order.createdAt)
   const createdAt = `${orderDate.getDate()}. ${orderDate.getMonth()}. ${orderDate.getFullYear()}`;

@@ -20,7 +20,7 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
 
     const {account, bankNum} = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
 
-    const invoiceNum = getVS(newOrder.id);
+    const invoiceNum = await getVS(newOrder.id);
 
     return {
       id: newOrder.id,
