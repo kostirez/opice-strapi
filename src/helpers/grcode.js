@@ -12,7 +12,7 @@ const generateQrCode = async (order) => {
   try {
     filePath = await savePngFileFromUrl(url, saveDirectory, vs)
   } catch (error) {
-    onsole.error('Error:', error.message)
+    console.error('Error:', error.message)
   }
   return filePath;
 }

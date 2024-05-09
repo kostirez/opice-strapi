@@ -20,8 +20,8 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
 
     let attachment = undefined;
     if (newOrder.paymentCode==='PRE') {
-      const QrCodePath = await generateQrCode(order);
       try {
+        const QrCodePath = await generateQrCode(order);
         if (fs.existsSync(QrCodePath)) {
           attachment = fs.readFileSync(QrCodePath);
           ctx.attachment(QrCodePath);
