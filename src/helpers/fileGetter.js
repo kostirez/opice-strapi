@@ -40,8 +40,7 @@ async function savePngFileFromUrl(url, saveDirectory, name) {
 }
 
 const getPublicDocument = async (fileName) => {
-  let path = './public/documents/';
-  const filePath = path.join('./public/documents/', fileName);
+  const filePath = './public/documents/' + fileName;
   return await getDocument(filePath);
 }
 
