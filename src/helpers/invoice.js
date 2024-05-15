@@ -1,6 +1,7 @@
 const fs = require('fs');
 const PDFDocument = require("pdfkit");
 const { generateQrCode} = require("./grcode");
+const {getVS} = require("./invoiceId");
 
 const createInvoice = async(order, path) => {
 
@@ -16,7 +17,7 @@ const createInvoice = async(order, path) => {
   doc.registerFont('regular', 'fonts/Podkova-Regular.ttf')
   doc.registerFont('bold', 'fonts/Podkova-Bold.ttf')
 
-  generateHeader(doc, getVS(order.id));
+  generateHeader(doc, await getVS(order.id));
   generatePersonalInfo(doc, order, owner);
   await generatePaymentDetail(doc, invoice, order, payMethod);
   await generateInvoiceTable(doc, order, payMethod, transMethod);
@@ -24,7 +25,7 @@ const createInvoice = async(order, path) => {
   doc.pipe(fs.createWriteStream(path));
 }
 
-const generateHeader = async (doc, invoiceNum) => {
+const generateHeader = (doc, invoiceNum) => {
   doc
     .image("public/logo/logo_text.png", 50, 50, { width: 200 })
     .fillColor("#444444")

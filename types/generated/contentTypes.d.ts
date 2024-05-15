@@ -1124,7 +1124,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     transportPlace: Attribute.JSON;
     totalPrice: Attribute.Integer;
     note: Attribute.Text;
-    invoice: Attribute.Media;
+    state: Attribute.Enumeration<
+      ['done', 'pick_up', 'sent', 'paid', 'received']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

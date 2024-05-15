@@ -15,6 +15,7 @@ module.exports = createCoreService('api::order.order', ({ strapi }) => ({
       data: {
         ...body.data,
         totalPrice,
+        state: 'received',
       },
     });
 

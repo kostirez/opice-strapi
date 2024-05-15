@@ -47,6 +47,16 @@
     },
     "note": {
       "type": "text"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "done",
+        "pick_up",
+        "sent",
+        "paid",
+        "received"
+      ]
     }
   }
 }

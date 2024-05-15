@@ -40,10 +40,15 @@ async function savePngFileFromUrl(url, saveDirectory, name) {
 }
 
 const getPublicDocument = async (fileName) => {
+  let path = './public/documents/';
+  const filePath = path.join('./public/documents/', fileName);
+  return await getDocument(filePath);
+}
+
+const getDocument = async (filePath) => {
   let fileData = undefined;
   try {
-    const filePath = path.join('./public/documents/', fileName);
-    fileData = fs.readFileSync(filePath);
+    fileData = await fs.readFileSync(filePath);
   } catch (err) {
     console.error('Error:', err);
   }
@@ -52,5 +57,6 @@ const getPublicDocument = async (fileName) => {
 
 module.exports = {
   savePngFileFromUrl,
-  getPublicDocument
+  getPublicDocument,
+  getDocument
 }
