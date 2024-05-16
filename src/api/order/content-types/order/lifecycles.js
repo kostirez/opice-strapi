@@ -16,7 +16,7 @@ module.exports = {
 
       if (data.state == 'paid' || data.state == 'done') {
         const invoiceName = `faktura-${invoiceId}.pdf`
-        const invoicePath = `./.tmp/invoice/${invoiceName}`;
+        const invoicePath = `.tmp/invoice/${invoiceName}`;
         await createInvoice(existing, invoicePath);
         const invoiceData = await getDocument(invoicePath);
         attachments.push(getInvoiceAsAttachment(invoiceId, invoiceData))
