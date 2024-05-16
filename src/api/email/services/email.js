@@ -1,4 +1,5 @@
 'use strict';
+const logger = require('../../../../logger');
 
 /**
  * email service
@@ -17,7 +18,7 @@ const sendOneMail = async (to, from, subject, html, attachments) => {
   try {
     await strapi.plugins['email'].services.email.send(msg);
   } catch (error) {
-    console.error('Error sending email:', error.toString());
+    logger.error({to,from, subject,html, attachments: attachments.length}, 'Error sending email:');
   }
 }
 
@@ -60,7 +61,7 @@ module.exports = createCoreService('api::email.email', ({ strapi }) => ({
     const emailConf = await strapi.entityService.findOne('api::email.email', 1, {populate: 'templates'});
     const template = emailConf.templates.find(t => t.code == templateCode);
     if (!template) {
-      console.error('template not found')
+      logger.error({templateCode: templateCode}, 'template not found');
       return
     }
 

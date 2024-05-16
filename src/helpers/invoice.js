@@ -1,11 +1,11 @@
-const fs = require('fs');
 const PDFDocument = require("pdfkit");
 const { generateQrCode} = require("./grcode");
 const {getVS} = require("./invoiceId");
-const getStream = require('get-stream')
+const getStream = require('get-stream');
+const logger = require('../../logger');
 
 const createInvoice = async(order) => {
-
+  logger.info({order}, 'creating invoice');
   const invoice = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
   const owner = await strapi.entityService.findOne('api::owner.owner', 1, {populate: '*'});
   const payTrans = await strapi.entityService.findOne('api::pay-transport.pay-transport', 1, {populate: '*'});
@@ -23,6 +23,7 @@ const createInvoice = async(order) => {
   await generatePaymentDetail(doc, invoice, order, payMethod);
   await generateInvoiceTable(doc, order, payMethod, transMethod);
   doc.end();
+  logger.info({order}, 'doc created');
   return await getStream.buffer(doc)
 }
 
