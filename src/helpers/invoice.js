@@ -2,8 +2,9 @@ const fs = require('fs');
 const PDFDocument = require("pdfkit");
 const { generateQrCode} = require("./grcode");
 const {getVS} = require("./invoiceId");
+const getStream = require('get-stream')
 
-const createInvoice = async(order, path) => {
+const createInvoice = async(order) => {
 
   const invoice = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
   const owner = await strapi.entityService.findOne('api::owner.owner', 1, {populate: '*'});
@@ -22,7 +23,7 @@ const createInvoice = async(order, path) => {
   await generatePaymentDetail(doc, invoice, order, payMethod);
   await generateInvoiceTable(doc, order, payMethod, transMethod);
   doc.end();
-  doc.pipe(fs.createWriteStream(path));
+  return await getStream.buffer(doc)
 }
 
 const generateHeader = (doc, invoiceNum) => {

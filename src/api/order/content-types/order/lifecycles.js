@@ -1,9 +1,5 @@
 const {getVS} = require("../../../../helpers/invoiceId");
 const {createInvoice} = require("../../../../helpers/invoice");
-const {getDocument} = require("../../../../helpers/fileGetter");
-
-
-
 
 module.exports = {
   async beforeUpdate(action) {
@@ -15,11 +11,8 @@ module.exports = {
       const invoiceId = await getVS(existing.id);
 
       if (data.state == 'paid' || data.state == 'done') {
-        const invoiceName = `faktura-${invoiceId}.pdf`
-        const invoicePath = `.tmp/invoice/${invoiceName}`;
-        await createInvoice(existing, invoicePath);
-        const invoiceData = await getDocument(invoicePath);
-        attachments.push(getInvoiceAsAttachment(invoiceId, invoiceData))
+        const invoiceBuffer = await createInvoice(existing);
+        attachments.push(getInvoiceAsAttachment(invoiceId, invoiceBuffer))
       }
 
       strapi.service('api::email.email').send(
