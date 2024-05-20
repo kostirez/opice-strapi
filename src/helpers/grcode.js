@@ -1,6 +1,7 @@
 
 const { getVS } = require("./invoiceId");
 const { savePngFileFromUrl } = require("./fileGetter");
+const logger = require("../../logger");
 
 const generateQrCode = async (order) => {
   const invoice = await strapi.entityService.findOne('api::invoice.invoice', 1, {populate: '*'});
@@ -12,7 +13,7 @@ const generateQrCode = async (order) => {
   try {
     filePath = await savePngFileFromUrl(url, saveDirectory, vs)
   } catch (error) {
-    console.error('Error:', error.message)
+    logger.error({order, error}, 'generate qrcode failed');
   }
   return filePath;
 }
