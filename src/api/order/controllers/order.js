@@ -8,6 +8,7 @@ const {generateQrCode} = require("../../../helpers/grcode");
 const {getVS} = require("../../../helpers/invoiceId");
 const { createCoreController } = require('@strapi/strapi').factories;
 const { getPublicDocument } = require("../../../helpers/fileGetter")
+const logger = require("../../../../logger");
 
 module.exports = createCoreController('api::order.order', ({ strapi }) => ({
   async create(ctx) {
@@ -26,10 +27,11 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
           attachment = fs.readFileSync(QrCodePath);
           ctx.attachment(QrCodePath);
         } else {
-          console.error("QrCode - Requested file not found on server");
+          logger.error({attachment, newOrder}, 'QrCode - Requested file not found on server');
         }
       } catch(error) {
         console.error("QrCode - error", error);
+        logger.error({error, newOrder, attachment}, 'Error while generating QrCode');
       }
     }
 

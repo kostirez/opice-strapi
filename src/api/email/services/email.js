@@ -23,6 +23,10 @@ const sendOneMail = async (to, from, subject, html, attachments) => {
 }
 
 const addProductTable = (products) => {
+  if (!products || products.length === 0) {
+    logger.warn('addProductTable: no products provided');
+    return '';
+  }
   let template = `<div style="margin-top: 1.5rem">`;
   products.forEach(p => {
     template += `
