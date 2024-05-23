@@ -1012,12 +1012,17 @@ export interface ApiInstructionInstruction extends Schema.SingleType {
   attributes: {
     head: Attribute.String;
     text: Attribute.Text;
-    head_2: Attribute.String;
-    text_2: Attribute.Text;
     steps_sklenice: Attribute.Component<'category.restaurants', true>;
     steps_sitka: Attribute.Component<'category.restaurants', true>;
     headSklenice: Attribute.String;
     headMisky: Attribute.String;
+    table_1: Attribute.RichText;
+    table_2: Attribute.RichText;
+    toSprout: Attribute.String;
+    toNotSprout: Attribute.String;
+    main_pic: Attribute.Media;
+    skleniceImg: Attribute.Media;
+    miskaImg: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

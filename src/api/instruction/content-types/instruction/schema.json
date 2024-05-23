@@ -18,12 +18,6 @@
     "text": {
       "type": "text"
     },
-    "head_2": {
-      "type": "string"
-    },
-    "text_2": {
-      "type": "text"
-    },
     "steps_sklenice": {
       "type": "component",
       "repeatable": true,
@@ -39,6 +33,51 @@
     },
     "headMisky": {
       "type": "string"
+    },
+    "table_1": {
+      "type": "richtext"
+    },
+    "table_2": {
+      "type": "richtext"
+    },
+    "toSprout": {
+      "type": "string"
+    },
+    "toNotSprout": {
+      "type": "string"
+    },
+    "main_pic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "skleniceImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "miskaImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
