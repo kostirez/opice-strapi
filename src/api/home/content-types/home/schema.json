@@ -39,6 +39,19 @@
         "videos",
         "audios"
       ]
+    },
+    "instruction_label": {
+      "type": "string"
+    },
+    "instruction_pic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

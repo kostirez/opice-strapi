@@ -989,6 +989,8 @@ export interface ApiHomeHome extends Schema.SingleType {
     text: Attribute.Text;
     main_pic: Attribute.Media;
     microgreens_use: Attribute.Media;
+    instruction_label: Attribute.String;
+    instruction_pic: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
