@@ -77,9 +77,9 @@ const generatePaymentDetail = async (doc, invoice, order, paymentMethod) => {
   const vs = await getVS(order.id);
 
   let orderDate = new Date(order.createdAt)
-  const createdAt = `${orderDate.getDate()}. ${orderDate.getMonth()}. ${orderDate.getFullYear()}`;
+  const createdAt = `${orderDate.getDate()}. ${orderDate.getMonth() + 1}. ${orderDate.getFullYear()}`;
   orderDate.setDate(orderDate.getDate() + 15);
-  const payUntil = `${orderDate.getDate()}. ${orderDate.getMonth()}. ${orderDate.getFullYear()}`;
+  const payUntil = `${orderDate.getDate()}. ${orderDate.getMonth() + 1}. ${orderDate.getFullYear()}`;
 
 
   generateHr(doc, 300);
