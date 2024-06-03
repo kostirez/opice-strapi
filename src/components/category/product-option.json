@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_category_product_options",
+  "info": {
+    "displayName": "productOption",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

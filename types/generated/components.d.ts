@@ -105,6 +105,18 @@ export interface CategoryProductDetail extends Schema.Component {
   };
 }
 
+export interface CategoryProductOption extends Schema.Component {
+  collectionName: 'components_category_product_options';
+  info: {
+    displayName: 'productOption';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String;
+    price: Attribute.Integer;
+  };
+}
+
 export interface CategoryProductSummary extends Schema.Component {
   collectionName: 'components_category_product_summaries';
   info: {
@@ -142,18 +154,6 @@ export interface CategoryTransport extends Schema.Component {
   };
 }
 
-export interface CategoryZboziOption extends Schema.Component {
-  collectionName: 'components_category_zbozi_options';
-  info: {
-    displayName: 'zboziOption';
-  };
-  attributes: {
-    head: Attribute.String;
-    pic: Attribute.Media;
-    code: Attribute.String;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -165,10 +165,10 @@ declare module '@strapi/types' {
       'category.person': CategoryPerson;
       'category.pic-item': CategoryPicItem;
       'category.product-detail': CategoryProductDetail;
+      'category.product-option': CategoryProductOption;
       'category.product-summary': CategoryProductSummary;
       'category.restaurants': CategoryRestaurants;
       'category.transport': CategoryTransport;
-      'category.zbozi-option': CategoryZboziOption;
     }
   }
 }

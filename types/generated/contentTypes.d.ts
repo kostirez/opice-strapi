@@ -1264,22 +1264,17 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    sizeLabel: Attribute.String;
     price: Attribute.Decimal;
     pictures: Attribute.Media;
+    category: Attribute.Enumeration<['sklenice', 'misky', 'seminka']>;
+    details: Attribute.Component<'category.product-detail', true>;
+    productOptions: Attribute.Component<'category.product-option', true>;
     colors: Attribute.Relation<
       'api::product.product',
       'manyToMany',
       'api::color.color'
     >;
-    category: Attribute.Enumeration<['sklenice', 'misky', 'greens']>;
-    sizes: Attribute.Relation<
-      'api::product.product',
-      'manyToMany',
-      'api::size.size'
-    >;
-    details: Attribute.Component<'category.product-detail', true>;
-    zboziOptions: Attribute.Component<'category.zbozi-option', true>;
+    optionLabel: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1329,34 +1324,6 @@ export interface ApiRestaurantOfferRestaurantOffer extends Schema.SingleType {
   };
 }
 
-export interface ApiSizeSize extends Schema.CollectionType {
-  collectionName: 'sizes';
-  info: {
-    singularName: 'size';
-    pluralName: 'sizes';
-    displayName: 'size';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String;
-    icon: Attribute.Media;
-    products: Attribute.Relation<
-      'api::size.size',
-      'manyToMany',
-      'api::product.product'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::size.size', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1390,7 +1357,6 @@ declare module '@strapi/types' {
       'api::plant.plant': ApiPlantPlant;
       'api::product.product': ApiProductProduct;
       'api::restaurant-offer.restaurant-offer': ApiRestaurantOfferRestaurantOffer;
-      'api::size.size': ApiSizeSize;
     }
   }
 }

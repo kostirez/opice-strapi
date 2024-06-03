@@ -22,7 +22,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::product.product",
-      "mappedBy": "colors"
+      "inversedBy": "colors"
     }
   }
 }
