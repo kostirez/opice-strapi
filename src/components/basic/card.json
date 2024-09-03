@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_basic_cards",
+  "info": {
+    "displayName": "card"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "pic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

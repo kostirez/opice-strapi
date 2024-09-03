@@ -985,10 +985,10 @@ export interface ApiHomeHome extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    head: Attribute.String;
-    text: Attribute.Text;
     main_pic: Attribute.Media;
     microgreens_use: Attribute.Media;
+    head: Attribute.String;
+    text: Attribute.Text;
     instruction_label: Attribute.String;
     instruction_pic: Attribute.Media;
     createdAt: Attribute.DateTime;
@@ -1188,6 +1188,47 @@ export interface ApiOwnerOwner extends Schema.SingleType {
   };
 }
 
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages';
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    path: Attribute.String;
+    items: Attribute.DynamicZone<
+      [
+        'page-item.cards-with-text',
+        'page-item.cards',
+        'page-item.pic-and-text',
+        'page-item.title-and-pics',
+        'page-item.products',
+        'page-item.banner',
+        'page-item.steps',
+        'page-item.info-cards',
+        'page-item.contact-form',
+        'page-item.text-and-inner-html',
+        'page-item.eshop-menu'
+      ]
+    >;
+    showInMenu: Attribute.Boolean;
+    menuOrder: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPayTransportPayTransport extends Schema.SingleType {
   collectionName: 'pay_transports';
   info: {
@@ -1353,6 +1394,7 @@ declare module '@strapi/types' {
       'api::message.message': ApiMessageMessage;
       'api::order.order': ApiOrderOrder;
       'api::owner.owner': ApiOwnerOwner;
+      'api::page.page': ApiPagePage;
       'api::pay-transport.pay-transport': ApiPayTransportPayTransport;
       'api::plant.plant': ApiPlantPlant;
       'api::product.product': ApiProductProduct;

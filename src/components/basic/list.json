@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_basic_lists",
+  "info": {
+    "displayName": "list"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.emoji-text"
+    }
+  }
+}

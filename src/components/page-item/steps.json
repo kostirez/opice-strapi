@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_page_item_steps",
+  "info": {
+    "displayName": "steps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pics": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.paragraph"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right"
+      ]
+    },
+    "head": {
+      "type": "string"
+    }
+  }
+}

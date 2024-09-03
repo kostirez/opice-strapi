@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_page_item_eshop_menus",
+  "info": {
+    "displayName": "EshopMenu"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.card"
+    },
+    "head": {
+      "type": "string"
+    }
+  }
+}

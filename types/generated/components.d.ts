@@ -1,5 +1,89 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface BasicBtn extends Schema.Component {
+  collectionName: 'components_basic_btns';
+  info: {
+    displayName: 'btn';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.String;
+    link: Attribute.String;
+    style: Attribute.Enumeration<['primary', 'secondary', 'link']>;
+  };
+}
+
+export interface BasicCard extends Schema.Component {
+  collectionName: 'components_basic_cards';
+  info: {
+    displayName: 'card';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.String;
+    pic: Attribute.Media;
+    link: Attribute.String;
+  };
+}
+
+export interface BasicEmojiText extends Schema.Component {
+  collectionName: 'components_basic_emoji_texts';
+  info: {
+    displayName: 'emojiText';
+  };
+  attributes: {
+    text: Attribute.String;
+    icon: Attribute.Media;
+  };
+}
+
+export interface BasicInnerHtml extends Schema.Component {
+  collectionName: 'components_basic_inner_htmls';
+  info: {
+    displayName: 'innerHtml';
+  };
+  attributes: {
+    text: Attribute.String;
+    html: Attribute.Text;
+  };
+}
+
+export interface BasicList extends Schema.Component {
+  collectionName: 'components_basic_lists';
+  info: {
+    displayName: 'list';
+  };
+  attributes: {
+    items: Attribute.Component<'basic.emoji-text', true>;
+  };
+}
+
+export interface BasicParagraph extends Schema.Component {
+  collectionName: 'components_basic_paragraphs';
+  info: {
+    displayName: 'paragraph';
+    description: '';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+  };
+}
+
+export interface BasicTest extends Schema.Component {
+  collectionName: 'components_basic_tests';
+  info: {
+    displayName: 'infoCard';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.Text;
+    head: Attribute.String;
+    btnText: Attribute.String;
+    btnLink: Attribute.String;
+  };
+}
+
 export interface CategoryAddress extends Schema.Component {
   collectionName: 'components_category_addresses';
   info: {
@@ -10,6 +94,20 @@ export interface CategoryAddress extends Schema.Component {
     street: Attribute.String;
     city: Attribute.String;
     postCode: Attribute.Integer;
+  };
+}
+
+export interface CategoryCard extends Schema.Component {
+  collectionName: 'components_category_cards';
+  info: {
+    displayName: 'card';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.String;
+    pic: Attribute.Media;
+    link: Attribute.String;
+    head: Attribute.String;
   };
 }
 
@@ -154,10 +252,160 @@ export interface CategoryTransport extends Schema.Component {
   };
 }
 
+export interface CoreMenuItem extends Schema.Component {
+  collectionName: 'components_core_menu_items';
+  info: {
+    displayName: 'MenuItem';
+  };
+  attributes: {
+    text: Attribute.String;
+    path: Attribute.String;
+  };
+}
+
+export interface PageItemBanner extends Schema.Component {
+  collectionName: 'components_page_item_banners';
+  info: {
+    displayName: 'banner';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+    pic: Attribute.Media;
+  };
+}
+
+export interface PageItemCardsWithText extends Schema.Component {
+  collectionName: 'components_page_item_cards_with_texts';
+  info: {
+    displayName: 'cardsWithText';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+    cards: Attribute.Component<'basic.card', true>;
+    btn: Attribute.Component<'basic.btn'>;
+  };
+}
+
+export interface PageItemCards extends Schema.Component {
+  collectionName: 'components_page_item_cards';
+  info: {
+    displayName: 'cards';
+  };
+  attributes: {
+    head: Attribute.String;
+    cards: Attribute.Component<'basic.card', true>;
+  };
+}
+
+export interface PageItemContactForm extends Schema.Component {
+  collectionName: 'components_page_item_contact_forms';
+  info: {
+    displayName: 'contactForm';
+  };
+  attributes: {
+    type: Attribute.String;
+  };
+}
+
+export interface PageItemEshopMenu extends Schema.Component {
+  collectionName: 'components_page_item_eshop_menus';
+  info: {
+    displayName: 'EshopMenu';
+  };
+  attributes: {
+    items: Attribute.Component<'basic.card', true>;
+    head: Attribute.String;
+  };
+}
+
+export interface PageItemInfoCards extends Schema.Component {
+  collectionName: 'components_page_item_info_cards';
+  info: {
+    displayName: 'infoCards';
+  };
+  attributes: {
+    cards: Attribute.Component<'basic.test', true>;
+    head: Attribute.String;
+  };
+}
+
+export interface PageItemPicAndText extends Schema.Component {
+  collectionName: 'components_page_item_pic_and_texts';
+  info: {
+    displayName: 'picAndText';
+    description: '';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.String;
+    pic: Attribute.Media;
+    btn: Attribute.Component<'basic.btn'>;
+    layout: Attribute.Enumeration<['left', 'right', 'leftFlow', 'rightFlow']>;
+  };
+}
+
+export interface PageItemProducts extends Schema.Component {
+  collectionName: 'components_page_item_products';
+  info: {
+    displayName: 'products';
+    description: '';
+  };
+  attributes: {
+    category: Attribute.String;
+    head: Attribute.String;
+    pageSize: Attribute.Integer;
+  };
+}
+
+export interface PageItemSteps extends Schema.Component {
+  collectionName: 'components_page_item_steps';
+  info: {
+    displayName: 'steps';
+    description: '';
+  };
+  attributes: {
+    pics: Attribute.Media;
+    steps: Attribute.Component<'basic.paragraph', true>;
+    style: Attribute.Enumeration<['left', 'right']>;
+    head: Attribute.String;
+  };
+}
+
+export interface PageItemTextAndInnerHtml extends Schema.Component {
+  collectionName: 'components_page_item_text_and_inner_htmls';
+  info: {
+    displayName: 'TextAndInnerHTML';
+  };
+  attributes: {
+    items: Attribute.Component<'basic.inner-html', true>;
+  };
+}
+
+export interface PageItemTitleAndPics extends Schema.Component {
+  collectionName: 'components_page_item_title_and_pics';
+  info: {
+    displayName: 'titleAndPics';
+  };
+  attributes: {
+    head: Attribute.String;
+    pics: Attribute.Media;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'basic.btn': BasicBtn;
+      'basic.card': BasicCard;
+      'basic.emoji-text': BasicEmojiText;
+      'basic.inner-html': BasicInnerHtml;
+      'basic.list': BasicList;
+      'basic.paragraph': BasicParagraph;
+      'basic.test': BasicTest;
       'category.address': CategoryAddress;
+      'category.card': CategoryCard;
       'category.email-template': CategoryEmailTemplate;
       'category.eshop-category': CategoryEshopCategory;
       'category.menu-item': CategoryMenuItem;
@@ -169,6 +417,18 @@ declare module '@strapi/types' {
       'category.product-summary': CategoryProductSummary;
       'category.restaurants': CategoryRestaurants;
       'category.transport': CategoryTransport;
+      'core.menu-item': CoreMenuItem;
+      'page-item.banner': PageItemBanner;
+      'page-item.cards-with-text': PageItemCardsWithText;
+      'page-item.cards': PageItemCards;
+      'page-item.contact-form': PageItemContactForm;
+      'page-item.eshop-menu': PageItemEshopMenu;
+      'page-item.info-cards': PageItemInfoCards;
+      'page-item.pic-and-text': PageItemPicAndText;
+      'page-item.products': PageItemProducts;
+      'page-item.steps': PageItemSteps;
+      'page-item.text-and-inner-html': PageItemTextAndInnerHtml;
+      'page-item.title-and-pics': PageItemTitleAndPics;
     }
   }
 }

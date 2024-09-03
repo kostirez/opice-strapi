@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_page_item_text_and_inner_htmls",
+  "info": {
+    "displayName": "TextAndInnerHTML"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.inner-html"
+    }
+  }
+}

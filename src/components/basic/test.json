@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_basic_tests",
+  "info": {
+    "displayName": "infoCard",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "head": {
+      "type": "string"
+    },
+    "btnText": {
+      "type": "string"
+    },
+    "btnLink": {
+      "type": "string"
+    }
+  }
+}

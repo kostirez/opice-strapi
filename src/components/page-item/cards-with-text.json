@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_item_cards_with_texts",
+  "info": {
+    "displayName": "cardsWithText"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.card"
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "basic.btn"
+    }
+  }
+}

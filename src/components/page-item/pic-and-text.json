@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_page_item_pic_and_texts",
+  "info": {
+    "displayName": "picAndText",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "pic": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "basic.btn"
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right",
+        "leftFlow",
+        "rightFlow"
+      ]
+    }
+  }
+}

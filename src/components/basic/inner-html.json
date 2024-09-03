@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_basic_inner_htmls",
+  "info": {
+    "displayName": "innerHtml"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "html": {
+      "type": "text"
+    }
+  }
+}

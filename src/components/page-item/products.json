@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_item_products",
+  "info": {
+    "displayName": "products",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "type": "string"
+    },
+    "head": {
+      "type": "string"
+    },
+    "pageSize": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_page_item_info_cards",
+  "info": {
+    "displayName": "infoCards"
+  },
+  "options": {},
+  "attributes": {
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.test"
+    },
+    "head": {
+      "type": "string"
+    }
+  }
+}
