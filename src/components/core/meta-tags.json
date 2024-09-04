@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_core_meta_tags",
+  "info": {
+    "displayName": "metaTags"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  }
+}

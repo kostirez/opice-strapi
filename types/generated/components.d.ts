@@ -263,6 +263,29 @@ export interface CoreMenuItem extends Schema.Component {
   };
 }
 
+export interface CoreMetaData extends Schema.Component {
+  collectionName: 'components_core_meta_data';
+  info: {
+    displayName: 'metaData';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    tags: Attribute.Component<'core.meta-tags', true>;
+  };
+}
+
+export interface CoreMetaTags extends Schema.Component {
+  collectionName: 'components_core_meta_tags';
+  info: {
+    displayName: 'metaTags';
+  };
+  attributes: {
+    name: Attribute.String;
+    content: Attribute.String;
+  };
+}
+
 export interface PageItemBanner extends Schema.Component {
   collectionName: 'components_page_item_banners';
   info: {
@@ -418,6 +441,8 @@ declare module '@strapi/types' {
       'category.restaurants': CategoryRestaurants;
       'category.transport': CategoryTransport;
       'core.menu-item': CoreMenuItem;
+      'core.meta-data': CoreMetaData;
+      'core.meta-tags': CoreMetaTags;
       'page-item.banner': PageItemBanner;
       'page-item.cards-with-text': PageItemCardsWithText;
       'page-item.cards': PageItemCards;

@@ -1219,6 +1219,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     >;
     showInMenu: Attribute.Boolean;
     menuOrder: Attribute.String;
+    metaData: Attribute.Component<'core.meta-data'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
