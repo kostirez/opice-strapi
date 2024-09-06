@@ -315,10 +315,12 @@ export interface PageItemCards extends Schema.Component {
   collectionName: 'components_page_item_cards';
   info: {
     displayName: 'cards';
+    description: '';
   };
   attributes: {
     head: Attribute.String;
     cards: Attribute.Component<'basic.card', true>;
+    size: Attribute.Enumeration<['small', 'big']>;
   };
 }
 
