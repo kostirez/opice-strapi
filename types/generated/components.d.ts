@@ -328,9 +328,12 @@ export interface PageItemContactForm extends Schema.Component {
   collectionName: 'components_page_item_contact_forms';
   info: {
     displayName: 'contactForm';
+    description: '';
   };
   attributes: {
-    type: Attribute.String;
+    head: Attribute.String;
+    showMail: Attribute.Boolean & Attribute.DefaultTo<true>;
+    showSoc: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 

@@ -1,12 +1,21 @@
 {
   "collectionName": "components_page_item_contact_forms",
   "info": {
-    "displayName": "contactForm"
+    "displayName": "contactForm",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "type": {
+    "head": {
       "type": "string"
+    },
+    "showMail": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSoc": {
+      "type": "boolean",
+      "default": true
     }
   }
 }
