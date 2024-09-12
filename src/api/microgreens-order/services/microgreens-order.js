@@ -20,7 +20,7 @@ module.exports = createCoreService('api::microgreens-order.microgreens-order', (
       if (p.count === 0) {
         return;
       }
-      const box = microgreenBoxes.find(b => b.id ===p.boxId)
+      const box = microgreenBoxes.find(b => b.id == p.boxId)
       for (let b of box.availableBoxes) {
         const sinceWhenString = (new Date(b.sinceWhen)).toDateString()
         if (b.count >= p.count && sinceWhenString === pickUpDate.toDateString()) {
@@ -46,7 +46,7 @@ module.exports = createCoreService('api::microgreens-order.microgreens-order', (
     });
     const pickUpDate = new Date(pickUpDateString);
     products.forEach(p => {
-      const box = microgreenBoxes.find(b => b.id === p.boxId)
+      const box = microgreenBoxes.find(b => b.id == p.boxId)
       let index = 0;
       for (let b of box.availableBoxes) {
         if (b.count >= p.count && (new Date(b.sinceWhen)).toDateString() === pickUpDate.toDateString()) {
