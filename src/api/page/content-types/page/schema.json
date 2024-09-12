@@ -31,7 +31,9 @@
         "page-item.info-cards",
         "page-item.contact-form",
         "page-item.text-and-inner-html",
-        "page-item.eshop-menu"
+        "page-item.eshop-menu",
+        "page-item.order-microgreens",
+        "page-item.faq"
       ]
     },
     "showInMenu": {

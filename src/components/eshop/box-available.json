@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_eshop_box_availables",
+  "info": {
+    "displayName": "boxAvailable"
+  },
+  "options": {},
+  "attributes": {
+    "sinceWhen": {
+      "type": "date"
+    },
+    "count": {
+      "type": "integer"
+    }
+  }
+}

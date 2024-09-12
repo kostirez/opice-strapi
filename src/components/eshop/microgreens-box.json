@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_eshop_microgreens_boxes",
+  "info": {
+    "displayName": "microgreensBox"
+  },
+  "options": {},
+  "attributes": {
+    "boxId": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer"
+    }
+  }
+}

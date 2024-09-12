@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "microgreens_orders",
+  "info": {
+    "singularName": "microgreens-order",
+    "pluralName": "microgreens-orders",
+    "displayName": "microgreensOrder",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "customer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "category.person"
+    },
+    "payment": {
+      "type": "enumeration",
+      "enum": [
+        "cash",
+        "transfer"
+      ]
+    },
+    "place": {
+      "type": "enumeration",
+      "enum": [
+        "veletrzni"
+      ]
+    },
+    "products": {
+      "type": "component",
+      "repeatable": true,
+      "component": "eshop.microgreens-box"
+    },
+    "pickUpDate": {
+      "type": "date"
+    }
+  }
+}

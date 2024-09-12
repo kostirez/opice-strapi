@@ -1109,6 +1109,78 @@ export interface ApiMessageMessage extends Schema.CollectionType {
   };
 }
 
+export interface ApiMicrogreensBoxMicrogreensBox extends Schema.CollectionType {
+  collectionName: 'microgreens_boxes';
+  info: {
+    singularName: 'microgreens-box';
+    pluralName: 'microgreens-boxes';
+    displayName: 'microgreensBox';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    growDuration: Attribute.Integer;
+    price: Attribute.Integer;
+    availableBoxes: Attribute.Component<'eshop.box-available', true>;
+    pic: Attribute.Media;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::microgreens-box.microgreens-box',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::microgreens-box.microgreens-box',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMicrogreensOrderMicrogreensOrder
+  extends Schema.CollectionType {
+  collectionName: 'microgreens_orders';
+  info: {
+    singularName: 'microgreens-order';
+    pluralName: 'microgreens-orders';
+    displayName: 'microgreensOrder';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    customer: Attribute.Component<'category.person'>;
+    payment: Attribute.Enumeration<['cash', 'transfer']>;
+    place: Attribute.Enumeration<['veletrzni']>;
+    products: Attribute.Component<'eshop.microgreens-box', true>;
+    pickUpDate: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::microgreens-order.microgreens-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::microgreens-order.microgreens-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders';
   info: {
@@ -1214,7 +1286,9 @@ export interface ApiPagePage extends Schema.CollectionType {
         'page-item.info-cards',
         'page-item.contact-form',
         'page-item.text-and-inner-html',
-        'page-item.eshop-menu'
+        'page-item.eshop-menu',
+        'page-item.order-microgreens',
+        'page-item.faq'
       ]
     >;
     showInMenu: Attribute.Boolean;
@@ -1393,6 +1467,8 @@ declare module '@strapi/types' {
       'api::instruction.instruction': ApiInstructionInstruction;
       'api::invoice.invoice': ApiInvoiceInvoice;
       'api::message.message': ApiMessageMessage;
+      'api::microgreens-box.microgreens-box': ApiMicrogreensBoxMicrogreensBox;
+      'api::microgreens-order.microgreens-order': ApiMicrogreensOrderMicrogreensOrder;
       'api::order.order': ApiOrderOrder;
       'api::owner.owner': ApiOwnerOwner;
       'api::page.page': ApiPagePage;

@@ -37,6 +37,17 @@ export interface BasicEmojiText extends Schema.Component {
   };
 }
 
+export interface BasicFaq extends Schema.Component {
+  collectionName: 'components_basic_faqs';
+  info: {
+    displayName: 'faq';
+  };
+  attributes: {
+    question: Attribute.Text;
+    answer: Attribute.Text;
+  };
+}
+
 export interface BasicInnerHtml extends Schema.Component {
   collectionName: 'components_basic_inner_htmls';
   info: {
@@ -286,6 +297,28 @@ export interface CoreMetaTags extends Schema.Component {
   };
 }
 
+export interface EshopBoxAvailable extends Schema.Component {
+  collectionName: 'components_eshop_box_availables';
+  info: {
+    displayName: 'boxAvailable';
+  };
+  attributes: {
+    sinceWhen: Attribute.Date;
+    count: Attribute.Integer;
+  };
+}
+
+export interface EshopMicrogreensBox extends Schema.Component {
+  collectionName: 'components_eshop_microgreens_boxes';
+  info: {
+    displayName: 'microgreensBox';
+  };
+  attributes: {
+    boxId: Attribute.String;
+    count: Attribute.Integer;
+  };
+}
+
 export interface PageItemBanner extends Schema.Component {
   collectionName: 'components_page_item_banners';
   info: {
@@ -348,6 +381,17 @@ export interface PageItemEshopMenu extends Schema.Component {
   };
 }
 
+export interface PageItemFaq extends Schema.Component {
+  collectionName: 'components_page_item_faqs';
+  info: {
+    displayName: 'Faq';
+  };
+  attributes: {
+    head: Attribute.String;
+    faqs: Attribute.Component<'basic.faq', true>;
+  };
+}
+
 export interface PageItemInfoCards extends Schema.Component {
   collectionName: 'components_page_item_info_cards';
   info: {
@@ -356,6 +400,17 @@ export interface PageItemInfoCards extends Schema.Component {
   attributes: {
     cards: Attribute.Component<'basic.test', true>;
     head: Attribute.String;
+  };
+}
+
+export interface PageItemOrderMicrogreens extends Schema.Component {
+  collectionName: 'components_page_item_order_microgreens';
+  info: {
+    displayName: 'orderMicrogreens';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
   };
 }
 
@@ -428,6 +483,7 @@ declare module '@strapi/types' {
       'basic.btn': BasicBtn;
       'basic.card': BasicCard;
       'basic.emoji-text': BasicEmojiText;
+      'basic.faq': BasicFaq;
       'basic.inner-html': BasicInnerHtml;
       'basic.list': BasicList;
       'basic.paragraph': BasicParagraph;
@@ -448,12 +504,16 @@ declare module '@strapi/types' {
       'core.menu-item': CoreMenuItem;
       'core.meta-data': CoreMetaData;
       'core.meta-tags': CoreMetaTags;
+      'eshop.box-available': EshopBoxAvailable;
+      'eshop.microgreens-box': EshopMicrogreensBox;
       'page-item.banner': PageItemBanner;
       'page-item.cards-with-text': PageItemCardsWithText;
       'page-item.cards': PageItemCards;
       'page-item.contact-form': PageItemContactForm;
       'page-item.eshop-menu': PageItemEshopMenu;
+      'page-item.faq': PageItemFaq;
       'page-item.info-cards': PageItemInfoCards;
+      'page-item.order-microgreens': PageItemOrderMicrogreens;
       'page-item.pic-and-text': PageItemPicAndText;
       'page-item.products': PageItemProducts;
       'page-item.steps': PageItemSteps;

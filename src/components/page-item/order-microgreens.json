@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_page_item_order_microgreens",
+  "info": {
+    "displayName": "orderMicrogreens"
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}
