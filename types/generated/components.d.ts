@@ -1,5 +1,24 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface BasicArticlePreview extends Schema.Component {
+  collectionName: 'components_basic_article_previews';
+  info: {
+    displayName: 'ArticlePreview';
+    icon: 'file';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    urlParam: Attribute.String;
+    mainImage: Attribute.Media;
+    article: Attribute.Relation<
+      'basic.article-preview',
+      'oneToOne',
+      'api::article.article'
+    >;
+  };
+}
+
 export interface BasicBtn extends Schema.Component {
   collectionName: 'components_basic_btns';
   info: {
@@ -59,6 +78,18 @@ export interface BasicInnerHtml extends Schema.Component {
   };
 }
 
+export interface BasicLink extends Schema.Component {
+  collectionName: 'components_basic_links';
+  info: {
+    displayName: 'link';
+    icon: 'arrowRight';
+  };
+  attributes: {
+    name: Attribute.String;
+    url: Attribute.String;
+  };
+}
+
 export interface BasicList extends Schema.Component {
   collectionName: 'components_basic_lists';
   info: {
@@ -78,6 +109,19 @@ export interface BasicParagraph extends Schema.Component {
   attributes: {
     head: Attribute.String;
     text: Attribute.Text;
+  };
+}
+
+export interface BasicSlide extends Schema.Component {
+  collectionName: 'components_basic_slides';
+  info: {
+    displayName: 'slide';
+    icon: 'slideshow';
+  };
+  attributes: {
+    title: Attribute.String;
+    content: Attribute.Text;
+    image: Attribute.Media;
   };
 }
 
@@ -331,6 +375,20 @@ export interface PageItemBanner extends Schema.Component {
   };
 }
 
+export interface PageItemBlog extends Schema.Component {
+  collectionName: 'components_page_item_blogs';
+  info: {
+    displayName: 'blog';
+    icon: 'file';
+    description: '';
+  };
+  attributes: {
+    head: Attribute.String;
+    text: Attribute.Text;
+    articles: Attribute.Component<'basic.article-preview', true>;
+  };
+}
+
 export interface PageItemCardsWithText extends Schema.Component {
   collectionName: 'components_page_item_cards_with_texts';
   info: {
@@ -480,13 +538,16 @@ export interface PageItemTitleAndPics extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'basic.article-preview': BasicArticlePreview;
       'basic.btn': BasicBtn;
       'basic.card': BasicCard;
       'basic.emoji-text': BasicEmojiText;
       'basic.faq': BasicFaq;
       'basic.inner-html': BasicInnerHtml;
+      'basic.link': BasicLink;
       'basic.list': BasicList;
       'basic.paragraph': BasicParagraph;
+      'basic.slide': BasicSlide;
       'basic.test': BasicTest;
       'category.address': CategoryAddress;
       'category.card': CategoryCard;
@@ -507,6 +568,7 @@ declare module '@strapi/types' {
       'eshop.box-available': EshopBoxAvailable;
       'eshop.microgreens-box': EshopMicrogreensBox;
       'page-item.banner': PageItemBanner;
+      'page-item.blog': PageItemBlog;
       'page-item.cards-with-text': PageItemCardsWithText;
       'page-item.cards': PageItemCards;
       'page-item.contact-form': PageItemContactForm;

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_item_blogs",
+  "info": {
+    "displayName": "blog",
+    "icon": "file",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "head": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "articles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.article-preview"
+    }
+  }
+}

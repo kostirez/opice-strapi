@@ -33,7 +33,8 @@
         "page-item.text-and-inner-html",
         "page-item.eshop-menu",
         "page-item.order-microgreens",
-        "page-item.faq"
+        "page-item.faq",
+        "page-item.blog"
       ]
     },
     "showInMenu": {

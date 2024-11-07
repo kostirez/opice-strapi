@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_basic_article_previews",
+  "info": {
+    "displayName": "ArticlePreview",
+    "icon": "file",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "urlParam": {
+      "type": "string"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "article": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    }
+  }
+}

@@ -837,6 +837,39 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    backgroundImage: Attribute.Media;
+    slides: Attribute.Component<'basic.slide', true>;
+    similar: Attribute.Component<'basic.link', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiColorColor extends Schema.CollectionType {
   collectionName: 'colors';
   info: {
@@ -1288,7 +1321,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'page-item.text-and-inner-html',
         'page-item.eshop-menu',
         'page-item.order-microgreens',
-        'page-item.faq'
+        'page-item.faq',
+        'page-item.blog'
       ]
     >;
     showInMenu: Attribute.Boolean;
@@ -1459,6 +1493,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::article.article': ApiArticleArticle;
       'api::color.color': ApiColorColor;
       'api::email.email': ApiEmailEmail;
       'api::eshop.eshop': ApiEshopEshop;

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.slide"
+    },
+    "similar": {
+      "type": "component",
+      "repeatable": true,
+      "component": "basic.link"
+    }
+  }
+}
